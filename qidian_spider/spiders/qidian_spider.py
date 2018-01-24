@@ -8,7 +8,7 @@ class QidianSpider(scrapy.Spider):
     download_delay = 6
     allowed_domains = ["qidian.com"]
     rank_urls = "https://www.qidian.com/rank/{0}/?page={1}"
-    rank_tuple = ("yuepiao", "hotsales", "newvipclick")
+    rank_tuple = ("yuepiao", "newvipclick")
 
     def start_requests(self):
         for i in self.rank_tuple:
@@ -22,21 +22,26 @@ class QidianSpider(scrapy.Spider):
 
             item = QidianSpiderItem()
 
-            book_name = book.xpath('div[@class="book-mid-info"]/h4/a/text()').extract()
-            book_auth = book.xpath('div[@class="book-mid-info"]/p/a[1]/text()').extract()
-            book_type = book.xpath('div[@class="book-mid-info"]/p/a[2]/text()').extract()
-            book_status = book.xpath('div[@class="book-mid-info"]/p[@class="author"]/span/text()').extract()
-            book_brief = book.xpath('div[@class="book-mid-info"]/p[@class="intro"]/text()').extract()
-            num_type = book.xpath('div[@class="book-right-info"]/div/p/text()').extract()
-            num = book.xpath('div[@class="book-right-info"]/div/p/span/text()').extract()
+            book_name = book.xpath('div[@class="book-mid-info"]/h4/a/text()')[0].extract()
+            book_auth = book.xpath('div[@class="book-mid-info"]/p/a[1]/text()')[0].extract()
+            book_type = book.xpath('div[@class="book-mid-info"]/p/a[2]/text()')[0].extract()
+            book_status = book.xpath('div[@class="book-mid-info"]/p[@class="author"]/span/text()')[0].extract()
+            book_brief = book.xpath('div[@class="book-mid-info"]/p[@class="intro"]/text()')[0].extract()
+            num_type = book.xpath('div[@class="book-right-info"]/div/p/text()')[0].extract()
+            num = book.xpath('div[@class="book-right-info"]/div/p/span/text()')[0].extract()
+            rank = book.xpath('@data-rid')[0].extract()
 
-            item["book_name"] = book_name
-            item["book_auth"] = book_auth
-            item["book_type"] = book_type
-            item["book_status"] = book_status
-            item["book_brief"] = book_brief
+            item["name"] = book_name
+            item["auth"] = book_auth
+            item["type"] = book_type
+            item["status"] = book_status
+            item["brief"] = book_brief
             item["num_type"] = num_type
-            item["num"] = num
+            item["num"] = int(num)
+            item["rank"] = int(rank)
+
+            # get rank type
+            item["rank_type"] = response.url.split('/')[-2]
 
             yield item
 

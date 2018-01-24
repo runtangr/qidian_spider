@@ -11,10 +11,12 @@ import scrapy
 class QidianSpiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    book_name = scrapy.Field()
-    book_auth = scrapy.Field()
-    book_type = scrapy.Field()
-    book_status = scrapy.Field()
-    book_brief = scrapy.Field()
+    name = scrapy.Field()
+    auth = scrapy.Field()
+    type = scrapy.Field()
+    status = scrapy.Field()
+    brief = scrapy.Field()
     num_type = scrapy.Field()
     num = scrapy.Field()
+    rank = scrapy.Field()
+    rank_type = scrapy.Field()
