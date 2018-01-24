@@ -5,7 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
-from model.book import Book
+from qidian_spider.model.book import Book
 
 
 class QidianSpiderPipeline(object):
