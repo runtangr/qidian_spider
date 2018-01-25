@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#-*-coding:utf-8-*-
+# -*-coding:utf-8-*-
 
 import random
 from scrapy.contrib.downloadermiddleware.useragent import UserAgentMiddleware

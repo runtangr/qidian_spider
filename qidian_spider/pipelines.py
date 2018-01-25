@@ -12,7 +12,6 @@ class QidianSpiderPipeline(object):
 
     def process_item(self, item, spider):
 
-        a = item._values
         book = Book(**(item._values))
         book.save()
-        # print(item)
+

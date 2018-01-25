@@ -5,12 +5,11 @@ from mongoengine import *
 class Book(Document):
     __tablename__ = 'book'
 
-    name = StringField()
+    book_name = StringField()
     auth = StringField()
-    type = StringField()
+    type = ListField()
     status = StringField()
     brief = StringField()
-    num_type = StringField()
-    num = IntField()
-    rank = IntField()
-    rank_type = StringField()
+    book_covor_image_url = StringField()
+    original_url = StringField()
+
