@@ -6,6 +6,10 @@ BOT_NAME = 'qidian_spider'
 SPIDER_MODULES = ['qidian_spider.spiders']
 NEWSPIDER_MODULE = 'qidian_spider.spiders'
 
+DOWNLOAD_DELAY = 1
+CONCURRENT_ITEMS = 100
+CONCURRENT_REQUESTS = 16
+
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True

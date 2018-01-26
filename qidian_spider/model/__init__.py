@@ -2,8 +2,6 @@
 
 from mongoengine import connect
 
-import redis
 
-DBSession = connect("qidain_spider")
+DBSession = connect(db="qidain_spider", host="10.10.1.58")
 
-Redis = redis.StrictRedis(host='localhost', port=6379, db=0)

@@ -2,17 +2,13 @@ import scrapy
 from qidian_spider.items import QidianSpiderItem
 from scrapy.http import Request
 
-from scrapy_redis.spiders import RedisSpider
 
-
-class QidianSpider(RedisSpider):
+class QidianSpider(scrapy.Spider):
     name = "qidian"
-    download_delay = 6
     allowed_domains = ["qidian.com"]
-    # start_urls = [
-    #     "https://www.qidian.com/all"
-    # ]
-    redis_key = 'qidian_spider:start_urls'
+    start_urls = [
+        "https://www.qidian.com/all"
+    ]
 
     def parse(self, response):
 
@@ -38,5 +34,7 @@ class QidianSpider(RedisSpider):
         qidian_item['book_covor_image_url'] = "https:" + response.xpath('//div[@class="book-img"]/a/img/@src')[0].extract()
 
         qidian_item['original_url'] = response.url
+        book_id = response.url.split('/')[-1]
+        qidian_item['book_id'] = book_id
 
         yield qidian_item

@@ -12,4 +12,5 @@ class Book(Document):
     brief = StringField()
     book_covor_image_url = StringField()
     original_url = StringField()
+    book_id = StringField()
 
