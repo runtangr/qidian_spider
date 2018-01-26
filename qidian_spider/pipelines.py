@@ -8,7 +8,7 @@
 from qidian_spider.model.book import Book
 
 
-class QidianSpiderPipeline(object):
+class QidianSpiderMongodbPipeline(object):
 
     def process_item(self, item, spider):
 

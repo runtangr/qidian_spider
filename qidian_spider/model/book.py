@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from mongoengine import *
-
+import datetime
 
 class Book(Document):
     __tablename__ = 'book'
@@ -13,4 +13,5 @@ class Book(Document):
     book_covor_image_url = StringField()
     original_url = StringField()
     book_id = StringField()
+    update_time = DateTimeField(default=datetime.datetime.utcnow())
 
