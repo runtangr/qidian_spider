@@ -19,3 +19,4 @@ class QidianSpiderItem(scrapy.Item):
 
     book_covor_image_url = scrapy.Field()
     original_url = scrapy.Field()
+    book_id = scrapy.Field()

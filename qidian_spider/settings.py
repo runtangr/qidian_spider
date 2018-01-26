@@ -23,3 +23,9 @@ ITEM_PIPELINES = {
 }
 
 REDIS_URL = 'redis://10.10.1.58:6379'
+
+
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+SCHEDULER_PERSIST = True
+SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderPriorityQueue"
