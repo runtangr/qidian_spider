@@ -14,5 +14,4 @@ class QidianSpiderMongodbPipeline(object):
 
         book = Book(**(item._values))
         book.save()
-        return item['original_url']
 

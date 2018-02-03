@@ -20,9 +20,9 @@ DOWNLOADER_MIDDLEWARES = {
    # 'qidian_spider.middlewares.QidianSpiderDownloaderMiddleware': 543,
    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
    'qidian_spider.contrib.downloadmiddleware.rotate_useragent.RotateUserAgentMiddleware': 400,
-   'qidian_spider.contrib.downloadmiddleware.rotate_proxy.ProxyMiddleware': 400,
    'scrapy_crawlera.CrawleraMiddleware': 300
 }
+
 
 ITEM_PIPELINES = {
    'qidian_spider.pipelines.QidianSpiderMongodbPipeline': 300,
@@ -36,9 +36,10 @@ SCHEDULER = "qidian_spider.scrapy_redis.scheduler.Scheduler"
 SCHEDULER_PERSIST = False
 SCHEDULER_QUEUE_CLASS = "qidian_spider.scrapy_redis.queue.SpiderPriorityQueue"
 
-# set polipo
-HTTP_PROXY = 'http://127.0.0.1:8787'
+# crawlera set
+CRAWLERA_ENABLED = True
+CRAWLERA_USER = 'eee92c3deb124898828b37a5bf93dbd2'
+CRAWLERA_PASS = ''
 
 
-HTTPERROR_ALLOWED_CODES = [400]
-
+CRAWLERA_PRESERVE_DELAY = True

@@ -10,6 +10,6 @@ class ProxyMiddleware(object):
         request.meta['proxy'] = settings.get('HTTP_PROXY')
 
         # refresh ip
-        os.system("""(echo authenticate '"mypassword"'; echo signal newnym; echo \
-                   quit) | nc localhost 9051""")
-        # time.sleep(2)
+        # os.system("""(echo authenticate '"mypassword"'; echo signal newnym; echo \
+        #            quit) | nc localhost 9051""")
+

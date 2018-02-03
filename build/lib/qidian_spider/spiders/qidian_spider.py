@@ -1,7 +1,6 @@
 import scrapy
 from qidian_spider.items import QidianSpiderItem
 from scrapy.http import Request
-import time
 
 
 class QidianSpider(scrapy.Spider):
@@ -13,26 +12,10 @@ class QidianSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        if response.status == 400:
-            time.sleep(2)
-            # failing page and again request
-            yield Request(url=response.url, callback=self.parse, dont_filter=True)
-            return
-        try:
-            next_table = response.xpath('//a[contains(@class, "lbf-pagination-next")]')[0].extract()
-        except IndexError:
-            # failing page and again request
-            yield Request(url=response.url, callback=self.parse, dont_filter=True)
-            return
+        next_link = response.xpath('//a[@class="lbf-pagination-next "]/@href')[0].extract()
 
-        try:
-            next_link_url = response.xpath('//a[contains(@class, "lbf-pagination-next")]/@href')[0].extract()
-        except IndexError:
-            # end
-            return
-
-        if next_link_url:
-            yield Request(url="https://" + next_link_url, callback=self.parse)
+        if next_link:
+            yield Request(url="https://" + next_link, callback=self.parse)
 
         for detail_link in response.xpath('//div[@class="book-mid-info"]/h4/a/@href').extract():
             if detail_link:
