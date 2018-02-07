@@ -42,3 +42,13 @@ HTTP_PROXY = 'http://127.0.0.1:8787'
 
 HTTPERROR_ALLOWED_CODES = [400]
 
+# log
+LOG_LEVEL = 'DEBUG'
+LOG_FILE = "logs/scrapy.log"
+LOG_FORMATTER = 'qidian_spider.scrapy.logformatter.LogFormatter'
+
+# graphite
+STATS_CLASS = 'qidian_spider.graphite.graphite.RedisGraphiteStatsCollector'
+GRAPHITE_HOST = '127.0.0.1'
+GRAPHITE_PORT = 2003
+
