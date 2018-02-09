@@ -31,7 +31,8 @@
     4. 修改setting.py polipo端口
     5. scrapy crawl qidian
 
-
 # graphite
+![image](https://github.com/runtangr/qidian_spider/blob/master/qidian_spider/screenshots/graphite/graphite_20180208153532.png)
 
 # log
+![image](https://github.com/runtangr/qidian_spider/blob/master/qidian_spider/screenshots/log/log_20180208154505.png)
