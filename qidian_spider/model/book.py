@@ -16,3 +16,6 @@ class Book(Document):
     book_id = StringField()
     update_time = DateTimeField(default=datetime.datetime.utcnow())
 
+    score = StringField()
+    comment_num = StringField()
+

@@ -2,6 +2,10 @@ import scrapy
 from qidian_spider.items import QidianSpiderItem
 from scrapy.http import Request
 import time
+from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
 
 
 class QidianSpider(scrapy.Spider):
@@ -10,6 +14,12 @@ class QidianSpider(scrapy.Spider):
     start_urls = [
         "https://www.qidian.com/all"
     ]
+
+    def __init__(self, *args, **kwargs):
+        self.driver = webdriver.PhantomJS()
+        # self.driver = webdriver.Chrome()
+        self.driver.set_window_size(1080, 800)
+        super(QidianSpider, self).__init__(*args, **kwargs)
 
     def parse(self, response):
 
@@ -53,5 +63,20 @@ class QidianSpider(scrapy.Spider):
         qidian_item['original_url'] = response.url
         book_id = response.url.split('/')[-1]
         qidian_item['book_id'] = book_id
+
+        # add grade and comment number by selenium
+        self.driver.get(response.url)
+        wait = WebDriverWait(self.driver, timeout=300)
+        score = ''
+        comment_num = ''
+        wait_result = wait.until(EC.text_to_be_present_in_element(
+            (By.XPATH, '//*[@id="j_bookScore"]'),
+            '.'))
+        if wait_result is True:
+            score = self.driver.find_element_by_xpath('//*[@id="j_bookScore"]').text
+            comment_num = self.driver.find_element_by_xpath('//*[@id="j_userCount"]').text
+
+        qidian_item['score'] = score
+        qidian_item['comment_num'] = comment_num
 
         yield qidian_item
