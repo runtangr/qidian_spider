@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.remote.remote_connection import LOGGER
 import logging
+from scrapy import log
 
 LOGGER.setLevel(logging.WARNING)
 
@@ -70,15 +71,17 @@ class QidianSpider(scrapy.Spider):
 
         # add grade and comment number by selenium
         self.driver.get(response.url)
-        wait = WebDriverWait(self.driver, timeout=300)
-        score = ''
-        comment_num = ''
-        wait_result = wait.until(EC.text_to_be_present_in_element(
-            (By.XPATH, '//*[@id="j_bookScore"]'),
-            '.'))
-        if wait_result is True:
-            score = self.driver.find_element_by_xpath('//*[@id="j_bookScore"]').text
-            comment_num = self.driver.find_element_by_xpath('//*[@id="j_userCount"]').text
+        wait = WebDriverWait(self.driver, timeout=30)
+        try:
+            wait_result = wait.until(EC.text_to_be_present_in_element(
+                (By.XPATH, '//*[@id="j_bookScore"]'),
+                '.'))
+        except selenium.common.exceptions.TimeoutException:
+            log.msg("this book don't have grade:{}".format(qidian_item),
+                    level=log.WARNING)
+
+        score = self.driver.find_element_by_xpath('//*[@id="j_bookScore"]').text
+        comment_num = self.driver.find_element_by_xpath('//*[@id="j_userCount"]').text
 
         qidian_item['score'] = score
         qidian_item['comment_num'] = comment_num
