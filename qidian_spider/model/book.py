@@ -14,8 +14,8 @@ class Book(Document):
     book_covor_image_url = StringField()
     original_url = StringField()
     book_id = StringField()
-    update_time = DateTimeField(default=datetime.datetime.utcnow())
+    update_time = DateTimeField()
 
     score = StringField()
-    comment_num = StringField()
+    comment_num = IntField()
 
