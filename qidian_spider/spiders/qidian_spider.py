@@ -89,11 +89,14 @@ class QidianSpider(scrapy.Spider):
             qidian_item['comment_num'] = 0
             qidian_item['update_time'] = datetime.datetime.utcnow()
             yield qidian_item
+            # need return prevent continue the implementation
+            return
 
         score = self.driver.find_element_by_xpath('//*[@id="j_bookScore"]').text
         comment_num = self.driver.find_element_by_xpath('//*[@id="j_userCount"]/span').text
 
         qidian_item['score'] = score
+
         qidian_item['comment_num'] = int(comment_num)
         qidian_item['update_time'] = datetime.datetime.utcnow()
 
