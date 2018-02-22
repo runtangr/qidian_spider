@@ -9,8 +9,7 @@ import scrapy
 
 
 class QidianSpiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
+
     book_name = scrapy.Field()
     auth = scrapy.Field()
     type = scrapy.Field()
@@ -22,3 +21,4 @@ class QidianSpiderItem(scrapy.Item):
     book_id = scrapy.Field()
     score = scrapy.Field()
     comment_num = scrapy.Field()
+    update_time = scrapy.Field()

@@ -6,12 +6,13 @@ import pprint
 from scrapy import log
 from socket import socket
 from time import time
-from scrapy.statscol import StatsCollector
+from scrapy.statscollectors import StatsCollector
 
 # default values
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 STATS_KEY = 'scrapy:stats'
+
 
 class GraphiteClient(object):
     """
