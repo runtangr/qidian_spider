@@ -5,12 +5,13 @@
 
 # 功能
 
-    一个对https://www.qidian.com 网站的spider，把网站的书名，作者，书籍封面图片地址，书籍简介，网址链接下载到本地mongodb
+    一个对https://www.qidian.com 网站的spider，把网站的书名、作者、书籍封面图片地址、书籍简介、网址链接、书籍评价、评论人数下载到本地mongodb。
 
 # 爬虫被禁的策略
     1. 禁用cookie
     2. 实现了一个download middleware，不停的变user-aget
     3. 实现了一个可以每分钟变换ip的tor（国内需要tor前置代理）
+    4. selenium获取动态加载数据
 
 # 日志
     log信息默认写到文件中logs/scrapy.log
@@ -32,7 +33,6 @@
     5. scrapy crawl qidian
 
 # graphite
-![image](https://github.com/runtangr/qidian_spider/blob/master/qidian_spider/screenshots/graphite/graphite_20180208153532.png)
 
 # log
-![image](https://github.com/runtangr/qidian_spider/blob/master/qidian_spider/screenshots/log/log_20180208154505.png)
+
