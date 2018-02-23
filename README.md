@@ -33,6 +33,6 @@
     5. scrapy crawl qidian
 
 # graphite
-
+![graphite](https://github.com/runtangr/qidian_spider/blob/master/qidian_spider/screenshots/graphite/graphite_20180223085239.png)
 # log
-
+![log](https://github.com/runtangr/qidian_spider/blob/master/qidian_spider/screenshots/log/log_20180223090042.png)
