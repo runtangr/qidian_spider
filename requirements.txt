@@ -59,6 +59,6 @@ tzlocal==1.5.1
 urllib3==1.22
 w3lib==1.18.0
 websocket-client==0.46.0
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 whisper==1.1.1
 zope.interface==4.4.3
